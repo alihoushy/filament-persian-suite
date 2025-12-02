@@ -1,0 +1,75 @@
+---
+alwaysApply: true
+---
+<filament-persian-suite-guidelines>
+=== foundation rules ===
+
+# Filament Persian Suite Guidelines
+
+این قوانین به‌طور خاص برای توسعه یک پکیج بومی‌سازی جامع و با کیفیت بالا برای **FilamentPHP v4** و **Laravel LTS** طراحی شده‌اند. این دستورالعمل‌ها پایبندی به استانداردهای لاراول، معماری فیلامنت و الزامات فنی جدید (Tailwind v4 و پیاده‌سازی داخلی Jalali) را تضمین می‌کنند.
+
+## Foundational Context
+این پکیج برای نسخه‌ها و بسته‌های اصلی زیر ساخته شده است. شما باید کاملاً از اصول آن‌ها پیروی کنید:
+
+- php - 8.3+
+- laravel/framework (LARAVEL) - **LTS Version**
+- filament/filament (FILAMENT) - v4
+- pestphp/pest (PEST) - v2
+- **Jalali Implementation - Custom (NO EXTERNAL LIBRARIES)**
+- alpinejs (ALPINEJS) - v3
+- tailwindcss (TAILWINDCSS) - **v4**
+
+## Conventions & Clean Code
+- **Naming:** از اسامی توصیفی و صریح استفاده کنید (مثلاً `JalaliDateColumn` به‌جای `PersianDate`).
+- **DRY Principle:** قبل از نوشتن کد جدید، وجود منطق یا کامپوننت‌های قابل استفاده مجدد را بررسی کنید.
+- **RTL-First Design (R1):** تمامی کدهای UI (Blade/CSS) باید با تمرکز اصلی بر حالت **راست‌چین (RTL)** طراحی شوند و سپس سازگاری با LTR را تضمین کنند.
+- **No Global Functions (R2):** از تعریف توابع Global در پکیج پرهیز کنید. از متدهای استاتیک، کلاس‌ها یا Traitها استفاده کنید.
+
+## Verification & Testing (Test Enforcement)
+- **Test Runner:** از **Pest** استفاده کنید. هر ویژگی یا اصلاحی باید با تست برنامه‌نویسی (Unit یا Feature) پوشش داده شود.
+
+## Application Structure & Architecture
+- **Plugin Structure:** پکیج باید دقیقاً از معماری رسمی Filament v4 Plugin (با استفاده از `Plugin.php`) پیروی کند.
+- **Namespace:** فضای نام اصلی باید `YourName\FilamentPersianSuite` باشد.
+- **Dependencies:** **توجه: پکیج نباید وابستگی Composer به کتابخانه‌های تبدیل تاریخ شمسی (مانند `morilog/jalali`) داشته باشد.** منطق تاریخ باید درونی (In-House) پیاده‌سازی شود.
+
+=== boost rules ===
+## Tool Utilization
+- **Artisan:** برای بررسی پارامترهای دستورات Artisan از `list-artisan-commands` استفاده کنید.
+- **Documentation Search (Critically Important):** قبل از پیاده‌سازی ویژگی‌های جدید یا تغییرات عمده، حتماً از ابزار `search-docs` استفاده کنید. فیلترها را روی `filament/filament`، `laravel/framework` و `pestphp/pest` تنظیم کنید.
+    - **توجه:** برای جستجوی منطق تاریخ شمسی، فقط به دنبال اصول کلی یا ساختار جاوااسکریپتی باشید، نه یک پکیج آماده.
+
+=== php rules ===
+## PHP (Clean Code Standards)
+- **Type Declarations:** همیشه از نوع‌های بازگشتی صریح و Type Hintهای مناسب برای پارامترها استفاده کنید.
+- **Constructors (PHP 8.3+):** از **Constructor Property Promotion** استفاده کنید.
+- **Comments:** استفاده از بلوک‌های PHPDoc بر کامنت‌های درون خطی اولویت دارد.
+
+=== laravel/core rules ===
+## Laravel Best Practices
+- **Laravel LTS:** تمامی اصول توسعه باید با در نظر گرفتن ویژگی‌ها و تغییرات آخرین نسخه LTS لاراول (مانند ساختار جدید و متدهای Eloquent) سازگار باشند.
+- **Database:** از متدهای رابطه Eloquent استفاده کنید. از Eager Loading برای جلوگیری از N+1 Queries استفاده کنید.
+
+=== filament/v4 rules ===
+## Filament V4 Architecture (The Plugin Focus)
+- **Jalali Implementation (Crucial Rule):**
+    - **ممنوعیت وابستگی:** استفاده از پکیج‌های تبدیل تاریخ Composer ممنوع است.
+    - **پیاده‌سازی داخلی:** منطق تبدیل تاریخ شمسی به میلادی و بالعکس باید در لایه‌های PHP و JavaScript این پکیج و به صورت خودکفا پیاده‌سازی شود.
+- **Component Design:**
+    - **No Full Rewrites (R3):** تا حد امکان از متدهای تزریقی (مانند `mutateStateUsing()`) برای تغییر خروجی استفاده کنید، نه بازنویسی کامل کامپوننت‌های پایه.
+    - **Alpine & Livewire Bridge (R4):** اتصال بین PHP (Livewire) و JS (Alpine.js) در کامپوننت‌های Custom (مانند DatePicker) باید استاندارد و تمیز باشد.
+- **Naming Consistency (R5):** تمامی کلاس‌ها و متدهایی که با بومی‌سازی مرتبط هستند باید شامل کلماتی مانند `Jalali`، `Persian` یا `Rtl` باشند.
+
+=== tailwindcss/core rules ===
+## Tailwind V4 (Modern CSS)
+- **Styling Standard:** از کلاس‌های **Tailwind CSS v4** برای تمامی استایل‌ها استفاده کنید.
+- **Spacing:** برای ایجاد فاصله بین آیتم‌های لیست، از **Gap Utilities** استفاده کنید، نه Margin.
+- **Dark Mode:** کامپوننت‌های جدید باید از Dark Mode (با استفاده از پیشوند `dark:`) پشتیبانی کنند.
+- **Performance:** تمرکز بر استفاده کارآمد از Utility-Classes و کاهش اندازه فایل‌های CSS نهایی.
+
+=== pest/core rules ===
+## Pest Testing
+- **Tests:** تمامی تست‌ها باید با Pest نوشته شوند.
+- **Assertions:** از متدهای Assertion خاص (مانند `assertSuccessful`) استفاده کنید.
+
+</filament-persian-suite-guidelines>
