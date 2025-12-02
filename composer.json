@@ -3,16 +3,27 @@
     "description": "Filament Persian Suite",
     "type": "library",
     "version": "1.0.0",
-    "autoload": {
-        "psr-4": {
-            "AliHoushy\\FilamentPersianSuite\\": "src/"
-        }
+    "keywords": [
+        "laravel",
+        "filamentphp",
+        "filament",
+        "persian",
+        "rtl",
+        "package"
+    ],
+    "license": "MIT",
+    "homepage": "https://github.com/alihoushy/filament-persian-suite",
+    "support": {
+        "issues": "https://github.com/alihoushy/filament-persian-suite/issues",
+        "source": "https://github.com/alihoushy/filament-persian-suite"
     },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "AliHoushy\\FilamentPersianSuite\\FilamentPersianSuiteServiceProvider"
-            ]
+    "authors": [
+        {
+            "name": "Ali Houshyari Pour",
+            "email": "alihoushyaripour@gmail.com",
+            "homepage": "https://github.com/alihoushy"
         }
-    }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
