@@ -1,0 +1,18 @@
+{
+    "name": "alihoushy/filament-persian-suite",
+    "description": "Filament Persian Suite",
+    "type": "library",
+    "version": "1.0.0",
+    "autoload": {
+        "psr-4": {
+            "AliHoushy\\FilamentPersianSuite\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "AliHoushy\\FilamentPersianSuite\\FilamentPersianSuiteServiceProvider"
+            ]
+        }
+    }
+}
