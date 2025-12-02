@@ -1,6 +1,6 @@
 {
     "name": "alihoushy/filament-persian-suite",
-    "description": "Filament Persian Suite",
+    "description": "Filament Persian Suite - Comprehensive Persian localization for FilamentPHP v4",
     "type": "library",
     "version": "1.0.0",
     "keywords": [
@@ -9,7 +9,7 @@
         "filament",
         "persian",
         "rtl",
-        "package"
+        "jalali"
     ],
     "license": "MIT",
     "homepage": "https://github.com/alihoushy/filament-persian-suite",
@@ -24,6 +24,32 @@
             "homepage": "https://github.com/alihoushy"
         }
     ],
+    "require": {
+        "php": "^8.3",
+        "laravel/framework": "^11.0",
+        "filament/filament": "^4.0"
+    },
+    "require-dev": {
+        "pestphp/pest": "^2.0",
+        "orchestra/testbench": "^10.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Alihoushy\\FilamentPersianSuite\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Alihoushy\\FilamentPersianSuite\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Alihoushy\\FilamentPersianSuite\\FilamentPersianSuiteServiceProvider"
+            ]
+        }
+    },
     "minimum-stability": "dev",
     "prefer-stable": true
 }
